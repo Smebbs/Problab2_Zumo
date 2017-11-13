@@ -9,10 +9,13 @@ class Ultra(Sensob):
         for sensor in self.sensors:  # Update og append values
             sensor.update()
             values.append(sensor.getvalue)
-        limit = 0.01  # placeholder verdi
+        danger_limit = 0.01  # placeholder verdi
+        future_limit = 0.50 #placeholder verdi
         danger_flag = False
+        future_collision = False
         for value in values:
-            if value < limit:
+            if value < danger_limit:
                 danger_flag = True
-        return danger_flag
-
+            if value < future_limit:
+                future_collision = True
+        return danger_flag,future_collision
