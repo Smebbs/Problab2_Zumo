@@ -23,7 +23,7 @@ class Avoid_Line(Behavior):
         halt_request = False
 
         if len(dangers) > 0:
-            motor_recommendation = 'Turn_Line'
+            motor_recommendation = 'B'
             match_degree = 1
             halt_request = False
 
