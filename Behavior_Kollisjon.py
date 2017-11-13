@@ -15,8 +15,8 @@ class Kollisjon(Behavior):
         sensor_value = self.sensobs.get_value()
         if sensor_value:
             motor_recommendation = None #Rygge + snu 180 grader + kjør framover
-            match_degree = 0.9
-            halt_request = False
+            match_degree = 1
+            halt_request = True
         else:
             motor_recommendation = None
             match_degree = 0.01
