@@ -34,8 +34,8 @@ class Search_Color(Behavior):
     def sense_and_act(self):
         image = self.sensobs.get_value()
         loaded = image.load()
-        motor_recommendation = 'Turn_Color'
-        match_degree = 1
+        motor_recommendation = 'N'
+        match_degree = 0.1
         halt_request = False
         sigma_x = 0
         n_points = 0
@@ -53,7 +53,16 @@ class Search_Color(Behavior):
         if n_points != 0:
             x = int(sigma_x/n_points)
             x = translate(x, 0, width, -100, 100)
-            print(x)
+            if x < -60:
+                motor_recommendation = 'W'
+            elif x < -30:
+                motor_recommendation = 'NW'
+            elif x > 60:
+                motor_recommendation = 'NE'
+            elif x > 30:
+                motor_recommendation = 'E'
+            match_degree = 1
+
 
         return motor_recommendation, match_degree, halt_request
 
