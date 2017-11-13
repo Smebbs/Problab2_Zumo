@@ -55,13 +55,13 @@ class Search_Color(Behavior):
         if n_points != 0:
             x = int(sigma_x/n_points)
             x = translate(x, 0, width, -100, 100)
-            if x < -15:
+            if x < -25:
                 motor_recommendation = 'NW'
-            elif x < -30:
+            elif x < -25:
                 motor_recommendation = 'NW'
-            elif x > 15:
+            elif x > 25:
                 motor_recommendation = 'NE'
-            elif x > 15:
+            elif x > 25:
                 motor_recommendation = 'NE'
             match_degree = 1
 

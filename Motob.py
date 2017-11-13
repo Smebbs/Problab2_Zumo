@@ -28,11 +28,11 @@ class Motob:
         if recommendation == 'N':
             self.motors.set_value([0.5, 0.5], TURN_90)
         if recommendation == 'NE':
-            self.motors.set_value([1, -1], TURN_90/2)
+            self.motors.set_value([1, -1], TURN_90/3)
         if recommendation == 'E':
             self.motors.set_value([1, -1], TURN_90)
         if recommendation == 'NW':
-            self.motors.set_value([-1, 1], TURN_90/2)
+            self.motors.set_value([-1, 1], TURN_90/3)
         if recommendation == 'W':
             self.motors.set_value([-1, 1], TURN_90)
         if recommendation == 'R':
