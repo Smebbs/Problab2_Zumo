@@ -9,3 +9,4 @@ class Arbitrator:
             if behavior.weight > weight_winner:
                 behavior_winner = behavior
                 weight_winner = behavior.weight
+        return behavior_winner.motor_recommendation, behavior_winner.halt_request
