@@ -15,8 +15,6 @@ class Cam(Sensob):
         return Image.open('image.png').convert('RGB')
 
 
-if __name__ == "__main__":
-        cam = Cam()
-        image = cam.get_image()
-        cam.update(image)
-        cam.get_value().save("image123.png")
+    def update(self):
+        image = self.get_image()
+        self.value = image
