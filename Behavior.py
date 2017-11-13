@@ -8,7 +8,7 @@ class Behavior:
         self.halt_request = False
         self.priority = None
         self.match_degree = None
-        #self.weight = self.priority * self.match_degree
+        self.weight = None
 
 
     def consider_deactivation(self):
