@@ -9,6 +9,7 @@ class BBCON_:
         self.sensobs_active = []
         self.motobs = motobs
         self.arbitrator = arbitrator
+        self.future_collision = False
 
     def add_behavior(self, behavior):
         self.behaviors_all.append(behavior)
