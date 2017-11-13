@@ -26,7 +26,7 @@ class Motob:
         if recommendation == 'S':
             self.motors.stop()
         if recommendation == 'N':
-            self.motors.set_value([0.25, 0.25])
+            self.motors.set_value([0.5, 0.5], TURN_90)
         if recommendation == 'NE':
             self.motors.set_value([1, -1], TURN_90/2)
         if recommendation == 'E':
@@ -38,7 +38,7 @@ class Motob:
         if recommendation == 'R':
             self.motors.set_value([-1, -1], TURN_90/2)
         if recommendation == 'B':
-            self.motors.set_value([-0.5, -0.5])
+            self.motors.set_value([-0.5, -0.5], TURN_90)
             self.motors.set_value([1, -1], TURN_90*2)
 
 

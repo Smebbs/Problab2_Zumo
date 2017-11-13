@@ -1,5 +1,8 @@
 class Arbitrator:
-    def __init__(self, bbcon):
+    def __init__(self):
+        self.bbcon = None
+
+    def set_bbcon(self, bbcon):
         self.bbcon = bbcon
 
     def choose_action(self):

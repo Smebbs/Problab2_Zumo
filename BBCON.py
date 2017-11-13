@@ -1,5 +1,17 @@
 import time
-
+from Cam import Cam
+from Reflectance import Reflectance
+from Ultra import Ultra
+from Arbitrator import Arbitrator
+from Behavior_Avoid_Line import Avoid_Line
+from Behavior_Drive_Around import Drive_Around
+from Behavior_Kollisjon import Kollisjon
+from Behavior_Search_Color import Search_Color
+from Motob import Motob
+from Motors import Motors
+from zumo_button import ZumoButton
+from ultrasonic import Ultrasonic
+from reflectance_sensors import ReflectanceSensors
 
 
 class BBCON_:
@@ -48,7 +60,8 @@ class BBCON_:
             behavior.update()
         
         #Arbitrator velger action, returnerer aksjon + halt_flag
-        recommendation,halt = self.arbitrator.choose_action
+        recommendation,halt = self.arbitrator.choose_action()
+        print(recommendation, halt)
         
         #Eneste true halt_flag forekommer ved time = 50
         if halt: 
@@ -58,9 +71,40 @@ class BBCON_:
         self.motobs.update(recommendation)
         
         #La en syklus gå
-        time.sleep(0.5) 
+        time.sleep(0.1)
         
         #Reset sensobs, klar for ny syklus
         for sensob in self.sensobs_active:
             sensob.reset()
 
+
+if __name__ == "__main__":
+    ZumoButton().wait_for_press()
+    cam = Cam()
+    ref = Reflectance()
+    ultra_sensor = Ultrasonic()
+    ult = Ultra(ultra_sensor)
+    mot = Motors()
+    mob = Motob(mot)
+    arb = Arbitrator()
+    bsc = Search_Color(cam)
+    bsc.priority = 2
+    bav = Avoid_Line(ref)
+    bav.priority = 3
+    bda = Drive_Around()
+    bda.priority = 1
+    bak = Kollisjon(ult)
+    bak.priority = 3
+
+    bbcon = BBCON_([bsc, bav, bda, bak], [cam, ref, ult], mob, arb)
+    bda.add_bbcon(bbcon)
+    for beh in bbcon.behaviors_all:
+        bbcon.activate_behavior(beh)
+    for seh in bbcon.sensobs_all:
+        bbcon.activate_sensob(seh)
+    arb.set_bbcon(bbcon)
+
+
+    time.sleep(2)
+    for i in range(50):
+        bbcon.run_one_timestep()

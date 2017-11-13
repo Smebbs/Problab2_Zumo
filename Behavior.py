@@ -1,7 +1,6 @@
 class Behavior:
 
-    def __init__(self,bbcon,sensobs):
-        self.bbcon = bbcon
+    def __init__(self, sensobs):
         self.sensobs = sensobs
         self.motor_recommendation = None
         self.acive_flag = False
@@ -31,6 +30,7 @@ class Behavior:
         else:
             self.consider_activation()
         sense = self.sense_and_act()
+        print(sense)
         self.motor_recommendation = sense[0]
         self.match_degree = sense[1]
         self.halt_request = sense[2]

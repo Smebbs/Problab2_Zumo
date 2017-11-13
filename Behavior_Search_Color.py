@@ -16,8 +16,9 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
 
 
 class Search_Color(Behavior):
-    def __init__(self, bbcon, sensobs):
-        super().__init__(bbcon, sensobs)
+    def __init__(self, sensor):
+        super().__init__(sensor)
+        self.sensor = sensor
         self.time = 0
 
     def consider_activation(self):
@@ -32,10 +33,11 @@ class Search_Color(Behavior):
         return True
 
     def sense_and_act(self):
-        image = self.sensobs.get_value()
+        self.sensor.update()
+        image = self.sensor.get_value()
         loaded = image.load()
         motor_recommendation = 'N'
-        match_degree = 0.1
+        match_degree = 0
         halt_request = False
         sigma_x = 0
         n_points = 0
@@ -45,7 +47,7 @@ class Search_Color(Behavior):
             for y in range(height):
                 r, g, b = loaded[x, y]
                 # remove red from the pic
-                if r < 100 and g > 120 and b < 100:
+                if r < 100 and g > 150 and b < 100:
                     sigma_x += x
                     n_points += 1
 
@@ -53,17 +55,17 @@ class Search_Color(Behavior):
         if n_points != 0:
             x = int(sigma_x/n_points)
             x = translate(x, 0, width, -100, 100)
-            if x < -60:
-                motor_recommendation = 'W'
+            if x < -15:
+                motor_recommendation = 'NW'
             elif x < -30:
                 motor_recommendation = 'NW'
-            elif x > 60:
+            elif x > 15:
                 motor_recommendation = 'NE'
-            elif x > 30:
-                motor_recommendation = 'E'
+            elif x > 15:
+                motor_recommendation = 'NE'
             match_degree = 1
 
-
+        print(motor_recommendation)
         return motor_recommendation, match_degree, halt_request
 
 
@@ -71,5 +73,5 @@ if __name__ == "__main__":
     cam = Cam()
     # Temp:
     cam.update()
-    behav = Search_Color("bbcon", cam)
+    behav = Search_Color(cam)
     behav.sense_and_act()
