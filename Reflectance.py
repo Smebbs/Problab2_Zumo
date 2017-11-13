@@ -16,11 +16,7 @@ class Reflectance(Sensob):
 		value = self.reflect.update()
 
 	def update(self):
-		self.value = mean(self.get_color_reading())
+		self.value = self.get_color_reading()
 
 	def get_value(self):
 		return self.value
-
-
-def mean(array):
-	return sum(array) / float(len(array))
