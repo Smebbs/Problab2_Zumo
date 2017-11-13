@@ -1,5 +1,4 @@
-import Sensob
-
+import sensob
 
 class Ultra(Sensob):
     def __init__(self, sensors):
@@ -11,16 +10,9 @@ class Ultra(Sensob):
             sensor.update()
             values.append(sensor.getvalue)
         limit = 0.01  # placeholder verdi
-        close = 0
-        far = 0
-        # Logikk for å sjekke om en av avstandene er mindre enn limit, -> Kollisjon inc.
+        danger_flag = False
         for value in values:
             if value < limit:
-                current_sensor = self.sensors[values.index(value)]
-                # Logikk for å bryte av, få motorer til å unngå kollisjon
-            if value < close:
-                closest = value
-            if value > far:
-                far = value
-                # Bruk verdiene til å skape et overblikk av omgivelsene, gjelder bare ved flere
-                #
+                danger_flag = True
+        return danger_flag
+
