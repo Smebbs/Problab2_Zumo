@@ -13,10 +13,10 @@ class Reflectance(Sensob):
 		self.reflect = reflectance_sensors.ReflectanceSensors()
 
 	def get_sensor_current_value(self):
-		return self.reflect.update()
+		value = self.reflect.update()
 
 	def update(self):
-		return mean(self.get_color_reading())
+		self.value = mean(self.get_color_reading())
 
 	def get_value(self):
 		return self.value
@@ -24,8 +24,3 @@ class Reflectance(Sensob):
 
 def mean(array):
 	return sum(array) / float(len(array))
-
-
-sensor = Reflectance
-while True:
-	print(sensor.update())
