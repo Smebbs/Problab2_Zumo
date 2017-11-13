@@ -1,13 +1,12 @@
 import time
 
-
 class BBCON_:
-
     def __init__(self, behaviors, sensobs, motobs, arbitrator):
 
         self.behaviors_all = behaviors
         self.behaviors_active = []
-        self.sensobs = sensobs
+        self.sensobs_all = sensobs
+        self.sensobs_active = []
         self.motobs = motobs
         self.arbitrator = arbitrator
 
@@ -15,7 +14,7 @@ class BBCON_:
         self.behaviors_all.append(behavior)
 
     def add_sensob(self, sensob):
-        self.sensobs.append(sensob)
+        self.sensobs_all.append(sensob)
 
     def activate_behavior(self, behavior):
         if behavior in self.behaviors_all:
@@ -24,10 +23,18 @@ class BBCON_:
     def deactivate_behavior(self, behavior):
         if behavior in self.behaviors_active:
             self.behaviors_active.remove(behavior)
+    
+    def activate_sensob(self, sensob):
+        if sensob in self.sensobs_all:
+            self.sensobs_active.append(sensob)
+
+    def deactivate_sensob(self, sensob):
+        if sensob in self.sensobs_active:
+            self.sensobs_active.remove(sensob)
 
     def run_one_timestep(self):
 
-        for sensob in self.sensobs:
+        for sensob in self.sensobs_active:
             sensob.update()
 
         for behavior in self.behaviors_active:
@@ -42,5 +49,6 @@ class BBCON_:
 
         time.sleep(0.5)
 
-        for sensob in self.sensobs:
+        for sensob in self.sensobs_active:
             sensob.reset()
+
