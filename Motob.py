@@ -1,12 +1,12 @@
 class Motob:
 
-    def __init__(self, motors):
+		def __init__(self, motors):
 
-        self.motors = motors
-        self.value = None
+				self.motors = motors
+				self.value = None
 
-    def update(self,recommendation):
-        self.operationalize(recommendation)
+		def update(self,recommendation):
+				self.operationalize(recommendation)
 
     def operationalize(self,recommendation):
 
