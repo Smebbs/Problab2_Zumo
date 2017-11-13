@@ -3,8 +3,8 @@ class Sensob:
         self.sensors = sensors
         self.value = None
 
-    def update(self):
-        return self.get_value()
+    def update(self, value):
+        self.value = value
 
     def get_value(self):
-        return
+        return self.value
