@@ -24,13 +24,14 @@ class Search_Color(Behavior):
     def consider_activation(self):
         if self.time == 0:
             self.time += 1
-            return False
         elif self.time == 1:
             self.time = 0
-            return True
+             for sensob in self.sensobs:
+                self.bbcon.activate_sensob(sensob)
 
     def consider_deactivation(self):
-        return True
+         for sensob in self.sensobs:
+                self.bbcon.deactivate_sensob(sensob)
 
     def sense_and_act(self):
         self.sensor.update()
