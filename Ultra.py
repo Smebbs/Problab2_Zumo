@@ -5,8 +5,9 @@ class Ultra(Sensob):
     def __init__(self, sensors):
         super().__init__(sensors)
         self.sensors = sensors
+        self.value = None
 
-    def get_value(self):
+    def update(self):
         values = []
  # Update og append values
         value = self.sensors.update()
@@ -20,6 +21,7 @@ class Ultra(Sensob):
            danger_flag = True
         if value < future_limit:
             future_collision = True
-        return value, danger_flag,future_collision
+        self.value = value
+        returndanger_flag,future_collision
 
 
