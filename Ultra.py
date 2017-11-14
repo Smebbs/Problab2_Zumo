@@ -20,6 +20,6 @@ class Ultra(Sensob):
            danger_flag = True
         if value < future_limit:
             future_collision = True
-        return danger_flag,future_collision
+        return value, danger_flag,future_collision
 
 
