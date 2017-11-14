@@ -10,19 +10,19 @@ class Kollisjon(Behavior):
             if self.time == 0:
                 if self.bbcon.future_collision:
                     self.time = 0
-                    self.bbcon.activate_sensob(self.sensob)
+                    self.bbcon.activate_sensob(self.sensobs)
                     return True
                 else:
                     self.time = 1
             elif self.time == 1:
                 self.time = 0
-                self.bbcon.activate_sensob(self.sensob)
+                self.bbcon.activate_sensob(self.sensobs)
                 return True
 
 
     def consider_deactivation(self):
 
-        self.bbcon.deactivate_sensob(self.sensob)
+        self.bbcon.deactivate_sensob(self.sensobs)
 
     def sense_and_act(self):
         sensor_value = self.sensobs.get_value()
