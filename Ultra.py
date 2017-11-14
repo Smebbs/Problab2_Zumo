@@ -23,5 +23,10 @@ class Ultra(Sensob):
             future_collision = True
         self.value = value
         returndanger_flag,future_collision
-
+     
+    def get_value(self):
+        self.update()
+        return self.value
+    
+    
 
