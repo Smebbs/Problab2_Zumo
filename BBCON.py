@@ -71,7 +71,7 @@ class BBCON_:
         self.motobs.update(recommendation)
         
         #La en syklus gå
-        time.sleep(0.1)
+        time.sleep(0.2)
         
         #Reset sensobs, klar for ny syklus
         for sensob in self.sensobs_active:
