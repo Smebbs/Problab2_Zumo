@@ -8,8 +8,7 @@ class Drive_Around(Behavior):
         self.bbcon = None
 
     def consider_activation(self):
-        for sensob in self.sensobs:
-               self.bbcon.activate_sensob(sensob)
+        self.bbcon.activate_sensob(self.sensob)
 
     def consider_deactivation(self):
 
