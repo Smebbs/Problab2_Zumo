@@ -26,12 +26,10 @@ class Search_Color(Behavior):
             self.time += 1
         elif self.time == 1:
             self.time = 0
-             for sensob in self.sensobs:
-                self.bbcon.activate_sensob(sensob)
+            self.bbcon.activate_sensob(self.sensob)
 
     def consider_deactivation(self):
-         for sensob in self.sensobs:
-                self.bbcon.deactivate_sensob(sensob)
+         self.bbcon.deactivate_sensob(self.sensob)
 
     def sense_and_act(self):
         self.sensor.update()
