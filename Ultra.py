@@ -8,9 +8,8 @@ class Ultra(Sensob):
         self.value = None
 
     def update(self):
-        values = []
  # Update og append values
-        value = self.sensors.update()
+        value = self.sensors.get_value()
         #values.append(self.sensors.get_value())
         danger_limit = 0.01  # placeholder verdi
         future_limit = 0.50 #placeholder verdi
