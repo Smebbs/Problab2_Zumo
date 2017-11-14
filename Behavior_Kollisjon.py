@@ -5,14 +5,26 @@ class Kollisjon(Behavior):
 
     def __init__(self,sensobs):
         super().__init__(sensobs)
+        
+     def consider_activation(self):
+            if self.time == 0:
+                if self.bbcon.future_collision:
+                    self.time = 0
+                    for sensob in self.sensobs:
+                        self.bbcon.activate_sensob(sensob)
+                    return True
+                else:
+                    self.time = 1
+            elif self.time == 1:
+                self.time = 0
+                for sensob in self.sensobs:
+                    self.bbcon.activate_sensob(sensob)
+                return True
 
-    def consider_activation(self):
-
-        return True
 
     def consider_deactivation(self):
 
-        return False
+        return True
 
     def sense_and_act(self):
         sensor_value = self.sensobs.get_value()
